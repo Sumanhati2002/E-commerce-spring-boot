@@ -41,13 +41,14 @@
 
 			<div class="collapse navbar-collapse" id="navbarsFurni">
 				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-					<li class="nav-item active"><a class="nav-link"
+					<li class="nav-item "><a class="nav-link"
 						th:href="@{/index}">Home</a></li>
 					<li><a class="nav-link" th:href="@{/shop}">Shop</a></li>
 					<li><a class="nav-link" th:href="@{/about}">About us</a></li>
 					<li><a class="nav-link" th:href="@{/services}">Services</a></li>
 					<li><a class="nav-link" th:href="@{/blog}">Blog</a></li>
 					<li><a class="nav-link" th:href="@{/contact}">Contact us</a></li>
+					<li><a class="nav-link" th:href="@{/admin}">Admin</a></li>
 				</ul>
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
@@ -75,7 +76,7 @@
 							Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor
 							tempor tristique.</p>
 						<p>
-							<a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#"
+							<a th:href="@{/shop}" class="btn btn-secondary me-2">Shop Now</a><a href="#"
 								class="btn btn-white-outline">Explore</a>
 						</p>
 					</div>

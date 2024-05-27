@@ -1,14 +1,10 @@
 package com.spring.controller;
-
-import java.security.Principal;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-
+	
 	@GetMapping("/show")
 	public String show() {
 
@@ -59,5 +55,13 @@ public class MainController {
 	@GetMapping("/login")
 	public String login() {
 		return "login";
+	}
+	@GetMapping("/pdp")
+	public String pdp() {
+		return "pdp";
+	}
+	@GetMapping("/admin")
+	public String admin() {
+		return "admin";
 	}
 }
