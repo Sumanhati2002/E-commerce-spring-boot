@@ -23,11 +23,4 @@ public class ImageImpl implements ImageService{
 		imageRepo.deleteById(id);
 	}
 
-	/*
-	 * @Override public Image getUrl(Integer id) { return imageRepo.getImageUrl(id);
-	 * }
-	 */
-
-	
-
 }

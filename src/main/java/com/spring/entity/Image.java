@@ -9,9 +9,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class Image {
 
 	@Id
@@ -19,6 +19,7 @@ public class Image {
 	private int id;
 	private String adminEmail;
 	private String adminPassword;
+	private String imageName;
 	private String imageUrl;
 	private String imageDescription;
 	private int price;

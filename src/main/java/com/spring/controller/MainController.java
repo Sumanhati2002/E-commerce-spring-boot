@@ -1,9 +1,20 @@
 package com.spring.controller;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.spring.entity.Image;
+import com.spring.repo.ImageRepo;
+
 
 @Controller
 public class MainController {
+	
+	@Autowired
+	private ImageRepo imageRepo;
 	
 	@GetMapping("/show")
 	public String show() {
@@ -17,7 +28,9 @@ public class MainController {
 	}
 
 	@GetMapping("/shop")
-	public String shop() {
+	public String shop(Model model){
+		List<Image> images = (List<Image>) imageRepo.findAll();
+		model.addAttribute("images", images);
 		return "shop";
 	}
 
@@ -56,12 +69,12 @@ public class MainController {
 	public String login() {
 		return "login";
 	}
-	@GetMapping("/pdp")
-	public String pdp() {
-		return "pdp";
-	}
 	@GetMapping("/admin")
 	public String admin() {
 		return "admin";
+	}
+	@GetMapping("/pdp")
+	public String pdp() {
+		return "pdp";
 	}
 }
