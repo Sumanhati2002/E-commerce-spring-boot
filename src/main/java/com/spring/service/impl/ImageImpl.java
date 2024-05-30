@@ -23,4 +23,9 @@ public class ImageImpl implements ImageService{
 		imageRepo.deleteById(id);
 	}
 
+	@Override
+	public Image findImageByName(String imageName) {
+		return imageRepo.findByImageName(imageName);
+	}
+
 }

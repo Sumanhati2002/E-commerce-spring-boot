@@ -6,4 +6,5 @@ import com.spring.entity.Image;
 
 public interface ImageRepo extends CrudRepository<Image, Integer>{
 
+	Image findByImageName(String imageName);
 }

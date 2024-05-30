@@ -1,24 +1,24 @@
 package com.spring.controller;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.spring.entity.Image;
 import com.spring.repo.ImageRepo;
 
-
 @Controller
 public class MainController {
-	
+
 	@Autowired
 	private ImageRepo imageRepo;
-	
+
 	@GetMapping("/show")
 	public String show() {
-
 		return "index";
 	}
 
@@ -28,7 +28,7 @@ public class MainController {
 	}
 
 	@GetMapping("/shop")
-	public String shop(Model model){
+	public String shop(Model model) {
 		List<Image> images = (List<Image>) imageRepo.findAll();
 		model.addAttribute("images", images);
 		return "shop";
@@ -69,12 +69,16 @@ public class MainController {
 	public String login() {
 		return "login";
 	}
+
 	@GetMapping("/admin")
 	public String admin() {
 		return "admin";
 	}
-	@GetMapping("/pdp")
-	public String pdp() {
+
+	@GetMapping("/pdp/{imageName}")
+	public String pdp(@PathVariable("imageName") String imageName, Model model) {
+		Image image = imageRepo.findByImageName(imageName);
+		model.addAttribute("image", image);
 		return "pdp";
 	}
 }

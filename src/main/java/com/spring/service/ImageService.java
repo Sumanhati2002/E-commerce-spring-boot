@@ -6,5 +6,5 @@ public interface ImageService {
 
 	Image createImage(Image image);
 	void deleteImage(Integer id);
-
+	public Image findImageByName(String imageName);
 }
