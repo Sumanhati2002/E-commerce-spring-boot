@@ -1,12 +1,14 @@
 package com.spring.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.entity.Image;
 import com.spring.repo.ImageRepo;
@@ -17,59 +19,72 @@ public class MainController {
 	@Autowired
 	private ImageRepo imageRepo;
 
-	@GetMapping("/show")
-	public String show() {
-		return "index";
-	}
-
+	// this is index view handler
 	@GetMapping("/index")
 	public String index() {
 		return "index";
 	}
 
+	// this is shop view handler
+	// show 8 image per page
 	@GetMapping("/shop")
-	public String shop(Model model) {
-		List<Image> images = (List<Image>) imageRepo.findAll();
+	public String shop(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "8") Integer size,
+			Model model) {
+		
+		Pageable pageable = PageRequest.of(page, size);
+		Page<Image> images =  imageRepo.findAll(pageable);
+		
 		model.addAttribute("images", images);
+		model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", images.getTotalPages());
+        
 		return "shop";
 	}
 
+	// this is about view handler
 	@GetMapping("/about")
 	public String about() {
 		return "about";
 	}
 
+	// this is services view handler
 	@GetMapping("/services")
 	public String services() {
 		return "services";
 	}
 
+	// this is blog view handler
 	@GetMapping("/blog")
 	public String blog() {
 		return "blog";
 	}
 
+	// this is contact view handler
 	@GetMapping("/contact")
 	public String contact() {
 		return "contact";
 	}
 
+	// this is account view handler
 	@GetMapping("/account")
 	public String account() {
 
 		return "account";
 	}
 
+	// this is signup view handler
 	@GetMapping("/signup")
 	public String signup() {
 		return "signup";
 	}
 
+	// this is login view handler
 	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
 
+	// this is admin view handler
 	@GetMapping("/admin")
 	public String admin() {
 		return "admin";
