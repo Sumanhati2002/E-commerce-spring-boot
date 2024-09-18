@@ -15,6 +15,7 @@ public class LoginController {
 	@Autowired
 	private CustomerService customerService;
 	
+	//This is login handler
 	@PostMapping("/processlogin")
 	public String processlogin(@ModelAttribute Login login) {
 		for(Customer val : customerService.getAllCustomers()) {

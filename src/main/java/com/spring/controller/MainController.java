@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.entity.Image;
 import com.spring.repo.ImageRepo;
+import com.spring.service.ImageService;
 
 @Controller
 public class MainController {
 
 	@Autowired
 	private ImageRepo imageRepo;
+
+	@Autowired
+	private ImageService imageService;
 
 	// this is index view handler
 	@GetMapping("/index")
@@ -30,14 +34,14 @@ public class MainController {
 	@GetMapping("/shop")
 	public String shop(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "8") Integer size,
 			Model model) {
-		
+
 		Pageable pageable = PageRequest.of(page, size);
-		Page<Image> images =  imageRepo.findAll(pageable);
-		
+		Page<Image> images = imageRepo.findAll(pageable);
+
 		model.addAttribute("images", images);
 		model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", images.getTotalPages());
-        
+		model.addAttribute("totalPages", images.getTotalPages());
+
 		return "shop";
 	}
 
@@ -90,10 +94,21 @@ public class MainController {
 		return "admin";
 	}
 
+	// this will help to show product details
 	@GetMapping("/pdp/{imageName}")
 	public String pdp(@PathVariable("imageName") String imageName, Model model) {
-		Image image = imageRepo.findByImageName(imageName);
+
+		Image image = imageService.findImageByName(imageName);
+
 		model.addAttribute("image", image);
 		return "pdp";
+
+	}
+	
+	//This is cart handler
+	@GetMapping("/addToCart")
+	public String addToCart() {
+		
+		return "cart";
 	}
 }

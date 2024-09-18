@@ -18,8 +18,7 @@
 	rel="stylesheet">
 <link href="css/tiny-slider.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<title>Furni Free Bootstrap 5 Template for Furniture and
-	Interior Design Websites by Untree.co</title>
+<title>Furni</title>
 </head>
 
 <body>
@@ -68,19 +67,16 @@
 		<!-- start pagination -->
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
-				<li class="page-item" th:if="${currentPage > 0}"><a
-					class="page-link"
-					th:href="@{/shop(page=${currentPage - 1}, size=${size})}">Previous</a>
+				<li class="page-item" th:if="${currentPage > 0}">
+				<a class="page-link" th:href="@{/shop(page=${currentPage - 1}, size=${size})}">Previous</a>
 				</li>
-				<li class="page-item"
-					th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
-					th:classappend="${i == currentPage} ? ' active' : ''"><a
-					class="page-link" th:href="@{/shop(page=${i}, size=${size})}"
-					th:text="${i + 1}"></a></li>
-				<li class="page-item" th:if="${currentPage < totalPages - 1}">
-					<a class="page-link"
-					th:href="@{/shop(page=${currentPage + 1}, size=${size})}">Next</a>
-				</li>
+				<li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                th:classappend="${i == currentPage} ? ' active' : ''">
+                <a class="page-link" th:href="@{/shop(page=${i}, size=${size})}" th:text="${i + 1}"></a>
+            </li>
+            <li class="page-item" th:if="${currentPage < totalPages - 1}">
+                <a class="page-link" th:href="@{/shop(page=${currentPage + 1}, size=${size})}">Next</a>
+            </li>
 			</ul>
 		</nav>
 		<!-- end pagination -->

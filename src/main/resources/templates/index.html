@@ -18,8 +18,7 @@
 	rel="stylesheet">
 <link href="css/tiny-slider.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<title>Furni Free Bootstrap 5 Template for Furniture and
-	Interior Design Websites by Untree.co</title>
+<title>Furni</title>
 </head>
 
 <body>
@@ -102,7 +101,7 @@
 						Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor
 						tempor tristique.</p>
 					<p>
-						<a href="shop.html" class="btn">Explore</a>
+						<a th:href="@{/shop}" class="btn">Explore</a>
 					</p>
 				</div>
 				<!-- End Column 1 -->
@@ -249,9 +248,6 @@
 						<li>Donec vitae odio quis nisl dapibus malesuada</li>
 						<li>Donec vitae odio quis nisl dapibus malesuada</li>
 					</ul>
-					<p>
-						<a herf="#" class="btn">Explore</a>
-					</p>
 				</div>
 			</div>
 		</div>
@@ -562,16 +558,16 @@
 					<div class="row links-wrap">
 						<div class="col-6 col-sm-6 col-md-3">
 							<ul class="list-unstyled">
-								<li><a href="#">About us</a></li>
-								<li><a href="#">Services</a></li>
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">Contact us</a></li>
+								<li><a th:href="@{/about}">About us</a></li>
+								<li><a th:href="@{/services}">Services</a></li>
+								<li><a th:href="@{/blog}">Blog</a></li>
+								<li><a th:href="@{/contact}">Contact us</a></li>
 							</ul>
 						</div>
 
 						<div class="col-6 col-sm-6 col-md-3">
 							<ul class="list-unstyled">
-								<li><a href="#">Support</a></li>
+								<li><a th:href="@{/contact}">Support</a></li>
 								<li><a href="#">Knowledge base</a></li>
 								<li><a href="#">Live chat</a></li>
 							</ul>
