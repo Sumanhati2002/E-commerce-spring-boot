@@ -23,14 +23,16 @@
 									<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign
 										up</p>
 
-									<form class="mx-1 mx-md-4" th:action="@{/processform}" method="post">
+									<form class="mx-1 mx-md-4" th:action="@{/processform}" method="post" th:object="${customer}">
 
 										<div class="d-flex flex-row align-items-center mb-4">
 											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
 											<div data-mdb-input-init class="form-outline flex-fill mb-0">
 											<label class="form-label" for="form3Example1c">Your
 													Name</label>
-												<input type="text" id="form3Example1c" class="form-control" name="userName"/>
+												<input type="text" id="form3Example1c" class="form-control" name="userName"
+												th:value="${customer.userName}" th:field="*{userName}"/>
+												<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" style="color: red;">Name Error</span>
 											</div>
 										</div>
 
@@ -39,7 +41,9 @@
 											<div data-mdb-input-init class="form-outline flex-fill mb-0">
 											<label class="form-label" for="form3Example3c">Your
 													Email</label>
-												<input type="email" id="form3Example3c" class="form-control" name="userEmail"/>
+												<input type="email" id="form3Example3c" class="form-control" name="userEmail"
+												th:value="${customer.userEmail}" th:field="*{userEmail}"/>
+												<span th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" style="color: red;">Email Error</span>
 											</div>
 										</div>
 
@@ -49,7 +53,8 @@
 											<label class="form-label"
 													for="form3Example4c">Password</label>
 												<input type="password" id="form3Example4c"
-													class="form-control" name="userPassword"/> 
+													class="form-control" name="userPassword" th:value="${customer.userPassword}" th:field="*{userPassword}"/>
+													<span th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}" style="color: red;">Password Error</span> 
 											</div>
 										</div>
 

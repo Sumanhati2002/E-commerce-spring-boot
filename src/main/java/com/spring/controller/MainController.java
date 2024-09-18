@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.entity.Customer;
 import com.spring.entity.Image;
 import com.spring.repo.ImageRepo;
 import com.spring.service.ImageService;
@@ -78,7 +79,8 @@ public class MainController {
 
 	// this is signup view handler
 	@GetMapping("/signup")
-	public String signup() {
+	public String signup(Model model) {
+		model.addAttribute("customer", new Customer());
 		return "signup";
 	}
 
