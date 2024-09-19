@@ -38,4 +38,10 @@ public class ImageController {
 		imageService.deleteImage(id);
 		return new ResponseEntity<>("User successfully deleted!", HttpStatus.OK);
 	}
+	
+	@GetMapping("image/{id}")
+	public ResponseEntity<String> getImage(@PathVariable("id") Integer id) {
+		imageService.findImageById(id);
+		return new ResponseEntity<>("User successfully deleted!", HttpStatus.OK);
+	}
 }

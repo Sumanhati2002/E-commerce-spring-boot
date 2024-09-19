@@ -97,10 +97,10 @@ public class MainController {
 	}
 
 	// this will help to show product details
-	@GetMapping("/pdp/{imageName}")
-	public String pdp(@PathVariable("imageName") String imageName, Model model) {
+	@GetMapping("/pdp/{id}")
+	public String pdp(@PathVariable("id") Integer id, Model model) {
 
-		Image image = imageService.findImageByName(imageName);
+		Image image = imageService.findImageById(id);
 
 		model.addAttribute("image", image);
 		return "pdp";

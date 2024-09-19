@@ -1,5 +1,7 @@
 package com.spring.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,12 @@ public class ImageImpl implements ImageService{
 	@Override
 	public Image findImageByName(String imageName) {
 		return imageRepo.findByImageName(imageName);
+	}
+
+	@Override
+	public Image findImageById(int id) {
+		Optional<Image> findById=imageRepo.findById(id);
+		return findById.get();
 	}
 
 }

@@ -52,7 +52,7 @@
 				<div class="col-12 col-md-4 col-lg-3 mb-5"
 					th:each="image : ${images}">
 					<a class="product-item"
-						th:href="@{/pdp/{imageName}(imageName=${image.imageName})}"> <img
+						th:href="@{/pdp/{id}(id=${image.id})}"> <img
 						th:src="${image.imageUrl}" class="img-fluid product-thumbnail">
 						<h3 class="product-title" th:text="${image.imageName}"></h3> <strong
 						class="product-price" th:text="${image.price}"></strong> rs.<span
