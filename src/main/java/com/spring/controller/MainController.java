@@ -106,11 +106,4 @@ public class MainController {
 		return "pdp";
 
 	}
-	
-	//This is cart handler
-	@GetMapping("/addToCart")
-	public String addToCart() {
-		
-		return "cart";
-	}
 }
