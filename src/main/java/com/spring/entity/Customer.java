@@ -27,6 +27,8 @@ public class Customer {
 	@Email
 	private String userEmail;
 	@NotBlank
-    @Size(max = 8)
+    @Size(min = 4)
 	private String userPassword;
+	
+	private String role;
 }

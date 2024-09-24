@@ -106,4 +106,10 @@ public class MainController {
 		return "pdp";
 
 	}
+	
+	//this is check out handler
+	@GetMapping("/checkout")
+	public String checkout() {
+		return "checkout";
+	}
 }

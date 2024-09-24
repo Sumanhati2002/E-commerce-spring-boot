@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,7 +25,10 @@ public class SignupController {
 	@Autowired
 	private CustomerService customerService;
 
-	//This handler helps to handle signup request
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	// This handler helps to handle signup request
 	@PostMapping("/processform")
 	public String createUser(@Valid @ModelAttribute Customer customer, BindingResult bindingResult) {
 
@@ -32,6 +36,10 @@ public class SignupController {
 			if (bindingResult.hasErrors()) {
 				return "signup";
 			}
+			customer.setRole("ROLE_USER");
+			String encodedPassword = passwordEncoder.encode(customer.getUserPassword());
+			customer.setUserPassword(encodedPassword);
+			
 			this.customerService.createCustomer(customer);
 			return "index";
 		} catch (Exception e) {
@@ -41,21 +49,21 @@ public class SignupController {
 
 	}
 
-	//Get customer by Id
+	// Get customer by Id
 	@GetMapping("{customerId}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable("customerId") Integer customerId) {
 		Customer customer = customerService.getCustomerById(customerId);
 		return new ResponseEntity<>(customer, HttpStatus.OK);
 	}
 
-	//Get all customer
+	// Get all customer
 	@GetMapping
 	public ResponseEntity<List<Customer>> getAllUsers() {
 		List<Customer> costomers = customerService.getAllCustomers();
 		return new ResponseEntity<>(costomers, HttpStatus.OK);
 	}
 
-	//Delete Customer
+	// Delete Customer
 	@DeleteMapping("{customerId}")
 	public ResponseEntity<String> deleteCustomer(@PathVariable("customerId") Integer customerId) {
 		customerService.deleteCustomer(customerId);
