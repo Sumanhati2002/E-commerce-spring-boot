@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.spring.entity.Customer;
+import com.spring.repo.CustomerRepo;
 import com.spring.service.CustomerService;
 
 import jakarta.validation.Valid;
@@ -25,6 +26,9 @@ public class SignupController {
 	@Autowired
 	private CustomerService customerService;
 
+	@Autowired
+	private CustomerRepo customerRepo;
+	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -40,7 +44,7 @@ public class SignupController {
 			String encodedPassword = passwordEncoder.encode(customer.getUserPassword());
 			customer.setUserPassword(encodedPassword);
 			
-			this.customerService.createCustomer(customer);
+			this.customerRepo.save(customer);
 			return "index";
 		} catch (Exception e) {
 			e.printStackTrace();

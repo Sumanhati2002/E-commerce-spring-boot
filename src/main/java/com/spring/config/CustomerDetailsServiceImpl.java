@@ -15,12 +15,15 @@ public class CustomerDetailsServiceImpl implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		
 		// fetch data from database
 		Customer customer=customerRepo.getCustomerByCustomerName(username);
+		
 		if(customer==null) {
 			throw new UsernameNotFoundException("could not found customer");
 		}
 		CustomCustomerDetails customCustomerDetails=new CustomCustomerDetails(customer);
+		
 		return customCustomerDetails;
 	}
 

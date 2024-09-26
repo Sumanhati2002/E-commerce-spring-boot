@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.spring.entity.Customer;
 
+@SuppressWarnings("serial")
 public class CustomCustomerDetails implements UserDetails {
 
 	private Customer customer;
@@ -39,7 +40,7 @@ public class CustomCustomerDetails implements UserDetails {
 	@Override
 	public boolean isAccountNonExpired() {
 
-		return false;
+		return true;
 	}
 
 	@Override

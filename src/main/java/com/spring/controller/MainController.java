@@ -21,6 +21,8 @@ public class MainController {
 	@Autowired
 	private ImageRepo imageRepo;
 
+
+	
 	@Autowired
 	private ImageService imageService;
 
@@ -46,12 +48,15 @@ public class MainController {
 		return "shop";
 	}
 
+	
+	
 	// this is about view handler
 	@GetMapping("/about")
 	public String about() {
 		return "about";
 	}
 
+	
 	// this is services view handler
 	@GetMapping("/services")
 	public String services() {
@@ -85,7 +90,7 @@ public class MainController {
 	}
 
 	// this is login view handler
-	@GetMapping("/login")
+	@GetMapping("/signin")
 	public String login() {
 		return "login";
 	}
