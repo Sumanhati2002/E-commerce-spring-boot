@@ -44,7 +44,7 @@ public class Myconfig {
 		public SecurityFilterChain configuration(HttpSecurity http) throws Exception {
 
 			http.authorizeHttpRequests(requests -> requests.requestMatchers("/admin/**").hasRole("ADMIN")
-					.requestMatchers("/cart/**","/about/**").hasRole("USER")
+					.requestMatchers("/cart/**","/show-cartItem/**").hasRole("USER")
 					.requestMatchers("/**").permitAll())
 					.formLogin(form -> form.loginPage("/signin").loginProcessingUrl("/dologin").failureUrl("/signin")) 
 					.csrf(csrf -> csrf.disable());
