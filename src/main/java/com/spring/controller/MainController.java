@@ -53,7 +53,7 @@ public class MainController {
 	// this is about view handler
 	@GetMapping("/about")
 	public String about() {
-		return "about";
+		return "normal/about";
 	}
 
 	
@@ -117,4 +117,5 @@ public class MainController {
 	public String checkout() {
 		return "checkout";
 	}
+	
 }
