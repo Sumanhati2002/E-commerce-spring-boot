@@ -83,7 +83,7 @@
                             </div>
                           </td>
                           <td><span th:text="${cartitem.price}"></span></td>
-                          <td><a href="#" class="btn btn-black btn-sm">X</a></td>
+                          <td><a th:href="@{/delete/{cartId}(cartId=${cartitem.cartId})}" class="btn btn-black btn-sm">X</a></td>
                         </tr>
                       </tbody>
                     </table>

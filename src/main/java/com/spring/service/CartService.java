@@ -6,5 +6,4 @@ public interface CartService {
 
 	 CartItem createCartItem(CartItem cartItem);
 	 
-	 //delete cart item
 }

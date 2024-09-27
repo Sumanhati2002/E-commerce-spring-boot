@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.spring.entity.CartItem;
@@ -45,6 +46,7 @@ public class CartController {
 		return "index";
 	}
 
+	//it will show all cart items
 	@GetMapping("/show-cartItem")
 	public String showContacts(Model model, Principal principal) {
 
@@ -57,5 +59,15 @@ public class CartController {
 		model.addAttribute("cartitems", cartitems);
 
 		return "cart";
+	}
+	
+	//delete cart item
+	@GetMapping("/delete/{cartId}")
+	public String deleteCartItem(@PathVariable("cartId") Integer cartId) {
+
+		CartItem item= this.cartRepo.findById(cartId).get();
+		this.cartRepo.delete(item);
+
+		return "redirect:/show-cartItem";
 	}
 }
