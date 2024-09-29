@@ -1,5 +1,8 @@
 package com.spring.controller;
 
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,8 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.entity.CartItem;
 import com.spring.entity.Customer;
 import com.spring.entity.Image;
+import com.spring.repo.CartRepo;
+import com.spring.repo.CustomerRepo;
 import com.spring.repo.ImageRepo;
 import com.spring.service.ImageService;
 
@@ -22,7 +28,11 @@ public class MainController {
 	@Autowired
 	private ImageRepo imageRepo;
 
+	@Autowired
+	private CustomerRepo customerRepo;
 
+	@Autowired
+	private CartRepo cartRepo;
 	
 	@Autowired
 	private ImageService imageService;
@@ -116,6 +126,7 @@ public class MainController {
 	//this is check out handler
 	@GetMapping("/checkout")
 	public String checkout() {
+		
 		return "checkout";
 	}
 }
