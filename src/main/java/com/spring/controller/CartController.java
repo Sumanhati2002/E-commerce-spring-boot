@@ -10,16 +10,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.entity.CartItem;
 import com.spring.entity.Customer;
 import com.spring.repo.CartRepo;
 import com.spring.repo.CustomerRepo;
+import com.spring.service.CartService;
 
 @Controller
 public class CartController {
 
-	
+	@Autowired
+	private CartService cartService;
 	
 	@Autowired
 	private CustomerRepo customerRepo;
@@ -56,8 +59,10 @@ public class CartController {
 
 		List<CartItem> cartitems = this.cartRepo.findCartItemByCustomer(customer.getCustomerId());
 
+		int totalAmount = cartitems.stream().mapToInt(CartItem::getTotalAmount).sum();
+		
 		model.addAttribute("cartitems", cartitems);
-
+		model.addAttribute("totalAmount", totalAmount);
 		return "cart";
 	}
 	
@@ -68,6 +73,19 @@ public class CartController {
 		CartItem item= this.cartRepo.findById(cartId).get();
 		this.cartRepo.delete(item);
 
+		return "redirect:/show-cartItem";
+	}
+	
+	@PostMapping("/updateCart")
+	public String updateCart(@ModelAttribute CartItem cartItem, Principal principal) {
+		
+		try {
+			Customer customer= this.customerRepo.getCustomerByCustomerName(principal.getName());
+			cartItem.setCustomer(customer);
+			this.cartRepo.save(cartItem);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "redirect:/show-cartItem";
 	}
 }

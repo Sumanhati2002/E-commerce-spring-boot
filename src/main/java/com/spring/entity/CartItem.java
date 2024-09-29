@@ -20,17 +20,23 @@ public class CartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int cartId;
-	
+
 	private String imageName;
 	private String imageUrl;
-	private String price;
+	private int price;
+	private int quantity;
+	
+	public int getTotalAmount() {
+        return quantity * price; // Calculate total amount
+    }
+	
 	
 	@ManyToOne
 	@JsonIgnore
 	private Customer customer;
-	
+
 	@Override
-    public String toString() {
-        return "CartItem{id=" + cartId + /* other fields */ + '}';
-    }
+	public String toString() {
+		return "CartItem{id=" + cartId + /* other fields */ +'}';
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.entity.Customer;
@@ -53,7 +54,7 @@ public class MainController {
 	// this is about view handler
 	@GetMapping("/about")
 	public String about() {
-		return "normal/about";
+		return "about";
 	}
 
 	
@@ -117,5 +118,4 @@ public class MainController {
 	public String checkout() {
 		return "checkout";
 	}
-	
 }
