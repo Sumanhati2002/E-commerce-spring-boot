@@ -15,13 +15,11 @@ import com.spring.entity.CartItem;
 import com.spring.entity.Customer;
 import com.spring.repo.CartRepo;
 import com.spring.repo.CustomerRepo;
-import com.spring.service.CartService;
 
 @Controller
 public class CartController {
 
-	@Autowired
-	private CartService cartService;
+	
 	
 	@Autowired
 	private CustomerRepo customerRepo;
@@ -75,6 +73,7 @@ public class CartController {
 		return "redirect:/show-cartItem";
 	}
 	
+	//update the cart items
 	@PostMapping("/updateCart")
 	public String updateCart(@ModelAttribute CartItem cartItem, Principal principal) {
 		
@@ -87,4 +86,22 @@ public class CartController {
 		}
 		return "redirect:/show-cartItem";
 	}
+	
+	//this is check out handler
+		@GetMapping("/checkout")
+		public String checkout(Model model, Principal principal) {
+			
+			String userName = principal.getName();
+			Customer customer = this.customerRepo.getCustomerByCustomerName(userName);
+
+
+			List<CartItem> cartitems = this.cartRepo.findCartItemByCustomer(customer.getCustomerId());
+
+			int totalAmount = cartitems.stream().mapToInt(CartItem::getTotalAmount).sum();
+			
+			model.addAttribute("cartitems", cartitems);
+			model.addAttribute("totalAmount", totalAmount);
+			
+			return "checkout";
+		}
 }

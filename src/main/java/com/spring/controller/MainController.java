@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.entity.CartItem;
@@ -27,16 +26,16 @@ public class MainController {
 
 	@Autowired
 	private ImageRepo imageRepo;
-
-	@Autowired
-	private CustomerRepo customerRepo;
-
-	@Autowired
-	private CartRepo cartRepo;
 	
 	@Autowired
 	private ImageService imageService;
 
+	@Autowired
+	private CustomerRepo customerRepo;
+	
+	@Autowired
+	private CartRepo cartRepo;
+	
 	// this is index view handler
 	@GetMapping("/index")
 	public String index() {
@@ -123,10 +122,5 @@ public class MainController {
 
 	}
 	
-	//this is check out handler
-	@GetMapping("/checkout")
-	public String checkout() {
-		
-		return "checkout";
-	}
+	
 }
